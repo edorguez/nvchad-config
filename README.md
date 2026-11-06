@@ -1,77 +1,77 @@
 # nvchad-config
 
-Mi configuración de Neovim basada en el [starter de NvChad](https://github.com/NvChad/starter)
-(NvChad v2.5 + base46/UI v3.0), enfocada en desarrollo **Web (TS/JS/React/Angular), Go, Rust,
-HTML/CSS, JSON/YAML y Lua**. Todo el tooling (LSPs, formatters, debuggers) se instala
-automáticamente la primera vez que abres Neovim gracias a Mason.
+My Neovim configuration based on the [NvChad starter](https://github.com/NvChad/starter)
+(NvChad v2.5 + base46/UI v3.0), focused on **Web (TS/JS/React/Angular), Go, Rust,
+HTML/CSS, JSON/YAML and Lua** development. All tooling (LSPs, formatters, debuggers)
+is installed automatically on the first Neovim launch, thanks to Mason.
 
-## Requisitos
+## Requirements
 
 - **Neovim >= 0.12** — `brew install neovim`
 - `git`
-- Toolchains según lo que programes: `node`/`npm`, `go`, `rust`/`cargo`, `dotnet` (C#), JDK (Angular)
+- Toolchains for whatever you code in: `node`/`npm`, `go`, `rust`/`cargo`, `dotnet` (C#), JDK (Angular)
 
-Recomendados:
+Recommended:
 
-- `brew install ripgrep` — grep rápido para Telescope (`<leader>fw`)
-- `brew install lazygit` — diffs/historial de git interactivo
+- `brew install ripgrep` — fast grep for Telescope (`<leader>fw`)
+- `brew install lazygit` — interactive git diffs/history
 
-## Instalación
+## Installation
 
-En una Mac nueva:
+On a new Mac:
 
 ```bash
-# respalda (o borra) configuraciones previas
+# back up (or delete) previous configs
 mv ~/.config/nvim ~/.config/nvim.bak 2>/dev/null
 mv ~/.local/share/nvim ~/.local/share/nvim.bak 2>/dev/null
 
-# clona y arranca
-git clone https://github.com/EdoRguez/nvchad-config ~/.config/nvim
+# clone and launch
+git clone https://github.com/edorguez/nvchad-config ~/.config/nvim
 nvim
 ```
 
-La primera ejecución instala plugins, parsers de treesitter y todo el tooling de Mason
-(LSPs, stylua, prettierd, gofumpt, codelldb, delve, ...). Puede tardar unos minutos.
+The first run installs plugins, treesitter parsers and all the Mason tooling
+(LSPs, stylua, prettierd, gofumpt, codelldb, delve, ...). It may take a few minutes.
 
-Para actualizar después: `cd ~/.config/nvim && git pull` y dentro de nvim `:Lazy update`.
+To update later: `cd ~/.config/nvim && git pull`, then inside nvim run `:Lazy update`.
 
-## Ambiente incluido
+## Included stack
 
-| Componente | Qué es |
+| Component | What it provides |
 | --- | --- |
-| [NvChad v2.5](https://github.com/NvChad/NvChad) | Base: tema tokyonight, statusline, NvChad UI v3.0 |
-| Mason 2.x | Instalación automática de LSP/formatters/adapters |
-| conform.nvim | Formateo (`<leader>fm` + format on save): stylua, gofumpt, rustfmt, prettierd |
-| nvim-lspconfig 0.11+ API | LSP nativo: ts_ls, gopls, rust_analyzer, cssls, html, eslint, ... |
-| nvim-treesitter | Highlight para todos los lenguajes listados arriba |
-| trouble.nvim v3 | Panel de diagnostics/symbols/references |
-| nvim-dap + dap-ui + dap-go | Debugging: codelldb (C/C++/Rust) y delve (Go) |
-| gitsigns.nvim | Decoraciones git en el gutter |
-| nvim-tree + nvim-ts-autotag | Explorador de archivos y auto-cierre de tags |
+| [NvChad v2.5](https://github.com/NvChad/NvChad) | Base: tokyonight theme, statusline, NvChad UI v3.0 |
+| Mason 2.x | Automatic installation of LSP/formatters/adapters |
+| conform.nvim | Formatting (`<leader>fm` + format on save): stylua, gofumpt, rustfmt, prettierd |
+| nvim-lspconfig 0.11+ API | Native LSP: ts_ls, gopls, rust_analyzer, cssls, html, eslint, ... |
+| nvim-treesitter | Highlighting for every language listed above |
+| trouble.nvim v3 | Diagnostics/symbols/references panel |
+| nvim-dap + dap-ui + dap-go | Debugging: codelldb (C/C++/Rust) and delve (Go) |
+| gitsigns.nvim | Git decorations in the gutter |
+| nvim-tree + nvim-ts-autotag | File explorer and auto tag closing |
 
-## Mapeos principales (leader = `Espacio`)
+## Key bindings (leader = `Space`)
 
-| Tecla | Acción |
+| Key | Action |
 | --- | --- |
-| `;` | Modo comando |
+| `;` | Command mode |
 | `jk` (insert) | `<ESC>` |
 | `<C-n>` / `<leader>e` | NvimTree toggle / focus |
-| `<leader>ff` / `fw` / `fb` / `fh` | Telescope: archivos / grep / buffers / help |
-| `<leader>ca` (o `gra`) | Code actions |
-| `gd`, `gD`, `gi` , `gr`, `K`, `grr` | Navegación LSP |
-| `<leader>fm` | Formatear buffer |
+| `<leader>ff` / `fw` / `fb` / `fh` | Telescope: find files / grep / buffers / help |
+| `<leader>ca` (or `gra`) | Code actions |
+| `gd`, `gD`, `gi`, `gr`, `K`, `grr` | LSP navigation |
+| `<leader>fm` | Format buffer |
 | `<leader>dx` / `<leader>dX` | Diagnostics (workspace / buffer) |
 | `<leader>cs` / `<leader>cl` | Symbols / LSP panel (Trouble) |
 | `<leader>dL` / `<leader>dQ` | Location list / Quickfix |
 | `<leader>db` / `dc` / `du` / `di` / `dU`/`dr` | DAP: toggle breakpoint / continue / step over/in/out / UI |
-| `<C-h/j/k/l>` | Navegar ventanas |
-| `<leader>b`, `<tab>`, `<S-tab>`, `<leader>x` | Buffer: nuevo / siguiente / anterior / cerrar |
-| `<A-h>` / `<A-v>` / `<A-i>` | Terminales toggle |
+| `<C-h/j/k/l>` | Navigate windows |
+| `<leader>b`, `<tab>`, `<S-tab>`, `<leader>x` | Buffer: new / next / previous / close |
+| `<A-h>` / `<A-v>` / `<A-i>` | Toggle terminals |
 | `<leader>ch` | NvChad cheatsheet |
 | `<leader>wK` / `<leader>wk` | WhichKey |
 
-## Créditos
+## Credits
 
-- [NvChad y su starter](https://github.com/NvChad/NvChad) — la base de todo
+- [NvChad and its starter](https://github.com/NvChad/NvChad) — the foundation of it all
 - [lazy.nvim](https://github.com/folke/lazy.nvim) — plugin manager
-- Todos los plugins listados en `lazy-lock.json`
+- Every plugin listed in `lazy-lock.json`
